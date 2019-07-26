@@ -1,4 +1,19 @@
-### [Downloads page](https://github.com/N3MTV/gcphone/releases)
+### [Source Downloads page](https://github.com/N3MTV/gcphone/releases)
+
+
+Klavye destekli banka sistemi eklendi.
+Gereksiz olan Dark Chat silindi.
+https://cdn.discordapp.com/attachments/516358983649329191/603798864729735168/unknown.png
+
+
+
+
+
+
+
+
+
+
 
 <h2 align="center">Téléphone pour FiveM</h2>
 
