@@ -1,0 +1,31 @@
+import PhoneAPI from './../../PhoneAPI'
+
+const state = {
+  bankAmont: '0'
+}
+
+const getters = {
+  bankAmont: ({ bankAmont }) => bankAmont
+}
+
+const actions = {
+  sendpara ({ commit }, {id, paratutar}) {
+    console.log(id)
+    console.log(paratutar)
+    PhoneAPI.sendpara(id, paratutar)
+  }
+}
+
+const mutations = {
+  SET_BANK_AMONT (state, bankAmont) {
+    state.bankAmont = bankAmont
+  }
+}
+
+export default {
+  state,
+  getters,
+  actions,
+  mutations
+}
+
