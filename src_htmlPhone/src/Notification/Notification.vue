@@ -1,15 +1,13 @@
 <template>
   <div class="notifications">
-    <div
-      v-for='notif in list'
-      :key="notif.id"
-      class="notification"
-      :style="style(notif)"
-    >
+    <div v-for='notif in list' :key="notif.id" class="notification" :style="style(notif)">
       <div class="title">
         <i v-if="notif.icon" class="fa" :class="'fa-' + notif.icon"/> {{notif.title}}
       </div>
-      <div class="message">{{notif.message}}</div>
+      <div class="message">
+        {{notif.message}}
+        <img :v-if="notif.message.find('https')" :src=notif.message style="width: 20vh;">
+      </div>
     </div>
   </div>
 </template>
@@ -60,17 +58,25 @@ export default {
 
 <style scoped>
   .notification {
-    width: 450px;
+    width: 25.5vh;
+    position: absolute;
     background-color: rgba(29, 161, 242, 0.6);
     color: white;
     padding: 8px 16px;
     margin-bottom: 8px;
     border-radius: 6px;
+    bottom: 5vh;
+    right: 50vh;
   }
   .title {
+    text-align: center;
     font-size: 18px;
   }
   .message {
+    background: #6baed8;
+    padding: 1.1vh;
+    border-radius: 1vh;
+    word-wrap: break-word;
     font-size: 16px;
   }
 </style>

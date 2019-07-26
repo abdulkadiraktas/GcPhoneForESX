@@ -3,18 +3,18 @@
     <div class='elements'>
       <img class="logo_maze" src="/html/static/img/app_bank/logo_mazebank.jpg">
       <div class="hr"></div>
-      <div class='element' v-bind:class="{ select: 0 === currentSelect}">
+      <div class='element'>
         <div class="element-content">
           <span>Hesabınızda ki para</span>
           <span>{{ bankAmontFormat }}$</span>
         </div> 
         <div class="element-content" ref="form"> 
-          <input oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ref="form0" v-model="id" class="paragonder" placeholder="Iban numarasını girin">
+          <input v-bind:class="{ select: 0 === currentSelect}" v-autofocus oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ref="form0" v-model="id" class="paragonder" placeholder="Iban numarasını girin">
         </div> 
         <div class="element-content">           
-          <input oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ref="form1" v-model="paratutar" class="paragonder" placeholder="Miktarı Girin">
-          <button ref="form2" id="gonder" @click.stop="paragonder" class="buton">Parayı Transfer Et</button>
-          <button ref="form3" id="iptal" @click.stop="iptal" class="buton">İşlemi İptal Et</button>
+          <input v-bind:class="{ select: 1 === currentSelect}" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" ref="form1" v-model="paratutar" class="paragonder" placeholder="Miktarı Girin">
+          <button v-bind:class="{ select: 2 === currentSelect}" ref="form2" id="gonder" @click.stop="paragonder" class="buton">Parayı Transfer Et</button>
+          <button v-bind:class="{ select: 3 === currentSelect}" ref="form3" id="iptal" @click.stop="iptal" class="buton">İşlemi İptal Et</button>
 
         </div>
         <div class="element-content" style="font-size: 13px;">Bu proje <span style="color: red;">Abdulkadir Aktaş</span> tarafından geliştirilmiştir ve ücretsiz kullanım için paylaşılmıştır.</div>
@@ -31,7 +31,7 @@ export default {
     return {
       id: '',
       paratutar: '',
-      currentSelect: -1
+      currentSelect: 0
     }
   },
   methods: {
@@ -40,6 +40,9 @@ export default {
       this.$nextTick(() => {
         document.querySelector('focus').scrollIntoViewIfNeeded()
       })
+    },
+    onBackspace () {
+      this.$router.go(-1)
     },
     iptal () {
       // this.$router.push({path: '/messages'})
@@ -59,16 +62,31 @@ export default {
         this.currentSelect = this.currentSelect - 1
       }
       this.$refs['form' + this.currentSelect].focus()
+      console.log(this.currentSelect)
     },
     onDown () {
       if ((this.currentSelect + 1) <= 3) {
         this.currentSelect = this.currentSelect + 1
       }
       this.$refs['form' + this.currentSelect].focus()
+      console.log(this.currentSelect)
     },
     onEnter () {
+      if (this.ignoreControls === true) return
       if (this.currentSelect === 2) {
         this.paragonder()
+      } else if (this.currentSelect === 0) {
+        this.$phoneAPI.getReponseText().then(data => {
+          let message = data.text.trim()
+          this.id = message
+        })
+      } else if (this.currentSelect === 1) {
+        this.$phoneAPI.getReponseText().then(data => {
+          let message = data.text.trim()
+          this.paratutar = message
+        })
+      } else if (this.currentSelect === 3) {
+        this.iptal()
       }
     }
   },
@@ -85,11 +103,13 @@ export default {
       this.$bus.$on('keyUpArrowUp', this.onUp)
       this.$bus.$on('keyUpEnter', this.onEnter)
     }
+    this.$bus.$on('keyUpBackspace', this.onBackspace)
   },
   beforeDestroy () {
     this.$bus.$off('keyUpArrowDown', this.onDown)
     this.$bus.$off('keyUpArrowUp', this.onUp)
     this.$bus.$off('keyUpEnter', this.onEnter)
+    this.$bus.$off('keyUpBackspace', this.onBackspace)
   }
 }
 </script>
@@ -168,5 +188,8 @@ export default {
     border-radius: .3rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     text-transform: none;
+}
+.select{
+  border: 2px double #000000;
 }
 </style>

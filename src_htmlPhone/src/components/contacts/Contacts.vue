@@ -42,8 +42,8 @@ export default {
       this.disableList = true
       Modal.CreateModal({
         choix: [
-          {id: 1, title: this.IntlString('APP_CONTACT_EDIT'), icons: 'fa-circle-o', color: 'orange'},
-          {id: 3, title: 'Annuler', icons: 'fa-undo'}
+          {id: 1, title: this.IntlString('APP_CONTACT_EDIT'), icons: 'fa-edit', color: 'orange'},
+          {id: 3, title: 'Vazgeç', icons: 'fa-undo'}
         ]
       }).then(rep => {
         if (rep.id === 1) {

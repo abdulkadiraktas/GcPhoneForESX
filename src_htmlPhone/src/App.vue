@@ -44,7 +44,7 @@ export default {
         if (this.appelsInfo.initiator === true) {
           this.soundCall = new Audio('/html/static/sound/Phone_Call_Sound_Effect.ogg')
         } else {
-          this.soundCall = new Audio('/html/static/sound/ring.ogg')
+          this.soundCall = new Audio('/html/static/sound/Over_the_horizon.ogg')
         }
         this.soundCall.loop = true
         this.soundCall.volume = this.volume
