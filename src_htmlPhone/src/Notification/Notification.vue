@@ -4,9 +4,9 @@
       <div class="title">
         <i v-if="notif.icon" class="fa" :class="'fa-' + notif.icon"/> {{notif.title}}
       </div>
-      <div class="message">
-        {{notif.message}}
-        <img :v-if="notif.message.find('https')" :src=notif.message style="width: 20vh;">
+      <div class='message'>
+        <img v-if="isSMSImage(notif)" :src="notif.message" style="width: 100%; border-radius: 1vh;">
+        <span v-else >{{notif.message}}</span>
       </div>
     </div>
   </div>
@@ -51,6 +51,9 @@ export default {
     },
     destroy (id) {
       this.list = this.list.filter(n => n.id !== id)
+    },
+    isSMSImage (mess) {
+      return /^https?:\/\/.*\.(png|jpg|jpeg|gif)/.test(mess.message)
     }
   }
 }

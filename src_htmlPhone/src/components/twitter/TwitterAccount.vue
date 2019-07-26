@@ -16,7 +16,7 @@
       </template>
 
       <template v-if="isLogin">
-        <img :src="twitterAvatarUrl" height="128" width="128" style="align-self: center;">
+        <img :src="twitterAvatarUrl" height="128" class="profresim" width="128" style="align-self: center;">
 
         <div class="group" data-type="button" @click.stop="state = STATES.ACCOUNT">      
           <input type='button' class="btn btn-blue" @click.stop="state = STATES.ACCOUNT" :value="IntlString('APP_TWITTER_ACCOUNT_PARAM')" />
@@ -91,7 +91,7 @@
     <template v-else-if="state === STATES.ACCOUNT">
 
       <div style="margin-top: 42px; margin-bottom: 42px;" class="group img" data-type="button" @click.stop="onPressChangeAvartar">      
-        <img :src="twitterAvatarUrl" height="128" width="128" @click.stop="onPressChangeAvartar">
+        <img :src="twitterAvatarUrl" height="128" width="128" @click.stop="onPressChangeAvartar" class="profresim">
         <input type='button' class="btn btn-blue" :value="IntlString('APP_TWITTER_ACCOUNT_AVATAR')" @click.stop="onPressChangeAvartar" />
       </div>
 
@@ -268,12 +268,11 @@ export default {
       } catch (e) {}
     },
     async onPressChangeAvartar () {
-      try {
-        const data = await Modal.CreateTextModal({
-          text: this.twitterAvatarUrl || 'https://i.imgur.com/'
-        })
-        this.twitterSetAvatar({avatarUrl: data.text})
-      } catch (e) {}
+      const { url } = await this.$phoneAPI.takePhoto()
+      if (url !== null && url !== undefined) {
+        console.log(url)
+        this.twitterSetAvatar({avatarUrl: url})
+      }
     },
     login () {
       this.twitterLogin({
@@ -371,6 +370,14 @@ export default {
 
 .group.bottom {
   margin-top: auto;
+}
+.profresim{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid #999;
+  object-fit: cover;
+  object-position: 50% 15%;
 }
 
 .group.img {

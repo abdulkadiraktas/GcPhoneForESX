@@ -46,8 +46,7 @@ end
   Ouverture du téphone lié a un item
   Un solution ESC basé sur la solution donnée par HalCroves
   https://forum.fivem.net/t/tutorial-for-gcphone-with-call-and-job-message-other/177904
---]]
---[[
+--]] 
 ESX = nil
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -65,8 +64,7 @@ end
 function ShowNoPhoneWarning () 
   if (ESX == nil) then return end
   ESX.ShowNotification("Vous n'avez pas de ~r~téléphone~s~")
-end
---]]
+end 
 
 
 --====================================================================================
@@ -755,7 +753,7 @@ RegisterNUICallback('takePhoto', function(data, cb)
         local resp = json.decode(data)
         DestroyMobilePhone()
         CellCamActivate(false, false)
-        cb(json.encode({ url = resp.files[1].url }))   
+        --cb(json.encode({ url = resp.files[1].url }))   
       end)
       takePhoto = false
 		end

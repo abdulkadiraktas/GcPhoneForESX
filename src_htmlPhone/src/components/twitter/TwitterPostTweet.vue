@@ -5,9 +5,11 @@
           class="textarea-input"
           v-model.trim="message"
           v-autofocus
-          :placeholder="IntlString('APP_TWITTER_PLACEHOLDER_MESSAGE')"
-        ></textarea>
-        <span class='tweet_send' @click="tweeter">{{ IntlString('APP_TWITTER_BUTTON_ACTION_TWEETER') }}</span>
+          :placeholder="IntlString('APP_TWITTER_PLACEHOLDER_MESSAGE')"></textarea>
+    </div>
+    <div style="display: flex; justify-content: center;">
+      <button v-bind:class="{ select: 0 === currentSelect}" ref="form0" @click="tweeter" class="buton">{{ IntlString('APP_TWITTER_BUTTON_ACTION_TWEETER') }}</button>
+      <button v-bind:class="{ select: 1 === currentSelect}" ref="form1" @click="tweetphoto" class="buton">{{ IntlString('APP_TWITTER_BUTTON_ACTION_TWEETPHOTO') }}</button>
     </div>
   </div>
 </template>
@@ -19,7 +21,8 @@ export default {
   components: {},
   data () {
     return {
-      message: ''
+      message: '',
+      currentSelect: 0
     }
   },
   computed: {
@@ -28,19 +31,41 @@ export default {
   watch: {
   },
   methods: {
-    ...mapActions(['twitterPostTweet']),
+    ...mapActions(['twitterPostTweet', 'tweetphoto']),
     async onEnter () {
-      try {
-        const rep = await this.$phoneAPI.getReponseText({
-          // text: 'https://i.imgur.com/axLm3p6.png'
-        })
+      if (this.ignoreControls === true) return
+      if (this.currentSelect === 1) {
+        this.tweetphoto()
+      } else if (this.currentSelect === 0) {
+        const rep = await this.$phoneAPI.getReponseText()
         if (rep !== undefined && rep.text !== undefined) {
           const message = rep.text.trim()
           if (message.length !== 0) {
             this.twitterPostTweet({ message })
           }
         }
-      } catch (e) {}
+      }
+    },
+    onUp: function () {
+      if ((this.currentSelect - 1) >= 0) {
+        this.currentSelect = this.currentSelect - 1
+      }
+      this.$refs['form' + this.currentSelect].focus()
+      console.log(this.currentSelect)
+    },
+    onDown () {
+      if ((this.currentSelect + 1) <= 1) {
+        this.currentSelect = this.currentSelect + 1
+      }
+      this.$refs['form' + this.currentSelect].focus()
+      console.log(this.currentSelect)
+    },
+    async tweetphoto () {
+      const { url } = await this.$phoneAPI.takePhoto()
+      if (url !== null && url !== undefined) {
+        await this.twitterPostTweet({ message: url })
+        this.message = ''
+      }
     },
     async tweeter () {
       if (this.message === '') return
@@ -57,11 +82,15 @@ export default {
       this.$bus.$on('keyUpEnter', this.onEnter)
     }
     this.$bus.$on('keyUpBackspace', this.onBack)
+    this.$bus.$on('keyUpArrowDown', this.onDown)
+    this.$bus.$on('keyUpArrowUp', this.onUp)
   },
   async mounted () {
   },
   beforeDestroy () {
     this.$bus.$off('keyUpBackspace', this.onBack)
+    this.$bus.$on('keyUpArrowDown', this.onDown)
+    this.$bus.$on('keyUpArrowUp', this.onUp)
     this.$bus.$off('keyUpEnter', this.onEnter)
   }
 }
@@ -96,6 +125,12 @@ export default {
   font-size: 18px;
 }
 
+.tweethaci{
+  background-color: #1da1f2;
+    padding: 1vh;
+    border-radius: 1vh;
+    right: 10px;
+}
 
 .tweet_send{
   align-self: flex-end;
@@ -115,5 +150,25 @@ export default {
 .tweet_send:hover {
   cursor: pointer;
   background-color: #0084b4;
+}
+.buton{
+     border: none;
+    color: #fff;
+    background-color: #1da1f2;
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    margin-top: 1.25rem;
+    margin-bottom: .25rem;
+    cursor: pointer;
+    border-radius: .3rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    text-transform: none;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.select{
+  border: 2px double #000000;
 }
 </style>

@@ -10,8 +10,6 @@ const getters = {
 
 const actions = {
   sendpara ({ commit }, {id, paratutar}) {
-    console.log(id)
-    console.log(paratutar)
     PhoneAPI.sendpara(id, paratutar)
   }
 }

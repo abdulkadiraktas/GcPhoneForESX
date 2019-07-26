@@ -75,12 +75,12 @@ export default {
       const tweet = this.tweets[this.selectMessage]
       let optionsChoix = [{
         id: 1,
-        title: 'Like / Unlike',
+        title: 'Beğen / Beğeniyi Kaldır',
         icons: 'fa-heart'
       }, {
         id: 2,
         title: 'Yorum Yaz',
-        icons: 'fa-reply'
+        icons: 'fa-edit'
       }, {
         id: -1,
         title: this.IntlString('CANCEL'),
