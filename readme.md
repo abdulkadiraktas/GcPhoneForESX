@@ -3,7 +3,7 @@
 
 Klavye destekli banka sistemi eklendi.
 Gereksiz olan Dark Chat silindi.
-https://cdn.discordapp.com/attachments/516358983649329191/603798864729735168/unknown.png
+![Image of gcphone1](https://cdn.discordapp.com/attachments/516358983649329191/603798864729735168/unknown.png)
 
 
 
@@ -13,8 +13,7 @@ https://cdn.discordapp.com/attachments/516358983649329191/603798864729735168/unk
 
 
 
-
-
+Orjinal Script'in Read Me Kısmı
 <h2 align="center">Téléphone pour FiveM</h2>
 
 ![Image of gcphone1](https://i.imgur.com/naTiBgI.png)
