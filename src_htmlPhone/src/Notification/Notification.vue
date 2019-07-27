@@ -4,9 +4,9 @@
       <div class="title">
         <i v-if="notif.icon" class="fa" :class="'fa-' + notif.icon"/> {{notif.title}}
       </div>
-      <div class='message'>
+      <div class='message' :style="style(notif)">
         <img v-if="isSMSImage(notif)" :src="notif.message" style="width: 100%; border-radius: 1vh;">
-        <span v-else >{{notif.message}}</span>
+        <span v-else >{{notif.message}} </span>
       </div>
     </div>
   </div>
