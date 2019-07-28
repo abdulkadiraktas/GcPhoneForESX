@@ -2,14 +2,14 @@
 ESX                       = nil
 local PhoneNumbers        = {}
 
--- PhoneNumbers = {
---   ambulance = {
---     type  = "ambulance",
---     sources = {
---        ['1'] = true
---     }
---   }
--- }
+--PhoneNumbers = {
+--  ambulance = {
+--    type  = "ambulance",
+--    sources = {
+--       ['1'] = true
+--    }
+--  }
+--}
 
 TriggerEvent('esx:getSharedObject', function(obj)
   ESX = obj
@@ -17,7 +17,7 @@ end)
 
 function notifyAlertSMS (number, alert, listSrc)
   if PhoneNumbers[number] ~= nil then
-	local mess = 'De #' .. alert.numero  .. ' : ' .. alert.message
+	local mess = 'Gönderen Numara #' .. alert.numero  .. ' : ' .. alert.message
 	if alert.coords ~= nil then
 		mess = mess .. ' ' .. alert.coords.x .. ', ' .. alert.coords.y 
 	end

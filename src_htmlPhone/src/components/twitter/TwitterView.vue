@@ -9,7 +9,7 @@
           v-bind:class="{ select: key === selectMessage}"
           >
           <div class="tweet-img">
-            <img :src="tweet.authorIcon || 'html/static/img/twitter/default_profile.png'" width="48" height="48"/>
+            <img class="profresim" :src="tweet.authorIcon || 'html/static/img/twitter/default_profile.png'" width="48" height="48"/>
           </div>
           <div class="tweet-content">
             <div class="tweet-head">
@@ -373,4 +373,12 @@ export default {
   {
       background-color: #1da1f2;
   }
+  .profresim{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #999;
+  object-fit: cover;
+  object-position: 50% 15%;
+}
 </style>
