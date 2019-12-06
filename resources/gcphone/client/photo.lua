@@ -1,4 +1,4 @@
--- Author: Xinerki (https://forum.fivem.net/t/release-cellphone-camera/43599)
+-- @author ??? Maybe Charli FeverRP
 
 phone = false
 phoneId = 0
@@ -8,7 +8,7 @@ AddEventHandler('camera:open', function()
     CreateMobilePhone(1)
 	CellCamActivate(true, true)
 	phone = true
-    PhonePlayOut()
+    ePhoneOutAnim()
 end)
 
 frontCam = false
