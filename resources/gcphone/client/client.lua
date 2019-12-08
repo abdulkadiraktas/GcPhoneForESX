@@ -11,7 +11,7 @@ local KeyToucheCloseEvent = {
     { code = 176, event = 'Enter' },
     { code = 177, event = 'Backspace' },
 }
-local KeyOpenClose = 288 -- F2
+local KeyOpenClose = 27 -- DPAD UP  // OLD: --288 -- F2
 local KeyTakeCall = 38 -- E
 local menuIsOpen = false
 local contacts = {}
@@ -127,27 +127,41 @@ Citizen.CreateThread(function ()
 end)
 
 --====================================================================================
---
+-- bring up the phone
 --====================================================================================
+local keypressTimer = 0 -- don't change this... it needs to start at 0
+local keypressThreshold = 200 -- each 100 is about 1 second ... 200 = ~2 Seconds
 Citizen.CreateThread(function()
+	while true do
+    	--This bit was added by Jay (hold UP on gamepad DPAD for 2ish seconds to open the menu)
+    	if IsControlJustPressed(0, KeyOpenClose) and not isDead then
+    			keypressTimer = 0
+    			while IsControlPressed(0, KeyOpenClose) do
+      				Citizen.Wait(5)
+              keypressTimer = keypressTimer + 5
+      				if keypressTimer > keypressThreshold then
+      					break
+      				end
+          end
+      end
+		  -------------------------------------------------------------------------------------
+      while true do
+          Citizen.Wait(0)
+          if IsControlJustReleased(1, KeyOpenClose) and GetLastInputMethod( 0 ) and keypressTimer > keypressThreshold then
+              TooglePhone()
+          end
+          if menuIsOpen == true then
+              for _, value in ipairs(KeyToucheCloseEvent) do
+                  if IsControlJustPressed(1, value.code) then
+                      SendNUIMessage({keyUp = value.event})
+                  end
+              end
+          end
+      end
+    end)
 
-        while true do
-            Citizen.Wait(0)
-            if IsControlJustPressed(1, KeyOpenClose) and GetLastInputMethod( 0 ) then
-                TooglePhone()
-            end
-            if menuIsOpen == true then
-                for _, value in ipairs(KeyToucheCloseEvent) do
-                    if IsControlJustPressed(1, value.code) then
-                        SendNUIMessage({keyUp = value.event})
-                    end
-                end
-            end
-        end
-end)
-
-RegisterNetEvent("gcPhone:forceOpenPhone")
-AddEventHandler("gcPhone:forceOpenPhone", function(_myPhoneNumber)
+    RegisterNetEvent("gcPhone:forceOpenPhone")
+    AddEventHandler("gcPhone:forceOpenPhone", function(_myPhoneNumber)
     if menuIsOpen == false then
         TooglePhone()
     end
