@@ -11,7 +11,7 @@ local KeyToucheCloseEvent = {
     { code = 176, event = 'Enter' },
     { code = 177, event = 'Backspace' },
 }
-local KeyOpenClose = 42 -- DPAD UP (you have to hold it a bit-- love jay)  // OLD: --288 -- F2
+local KeyOpenClose = 188 -- DPAD UP (you have to hold it a bit-- love jay)  // OLD: --288 -- F2
 local KeyTakeCall = 38 -- E
 local menuIsOpen = false
 local contacts = {}
