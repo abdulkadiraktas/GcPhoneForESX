@@ -11,7 +11,7 @@ local KeyToucheCloseEvent = {
     { code = 176, event = 'Enter' },
     { code = 177, event = 'Backspace' },
 }
-local KeyOpenClose = 172 -- DPAD UP (you have to hold it a bit-- love jay)  // OLD: --288 -- F2
+local KeyOpenClose = 27 -- DPAD UP (you have to hold it a bit-- love jay)  // OLD: --288 -- F2
 local KeyTakeCall = 38 -- E
 local menuIsOpen = false
 local contacts = {}
@@ -354,7 +354,8 @@ function startCall (phone_number, rtcOffer, extraData)
 end
 RegisterNUICallback('startCall', function (data, cb)
     print(json.encode(data))
-    startCall(data.numero, data.rtcOffer, data.extraData)
+--    startCall(data.numero, data.rtcOffer, data.extraData)
+    startCall(data.number, data.rtcOffer, data.extraData) -- <-- that said numero not number .. i don't think that was right.  fixed it.
     cb()
 end)
 
@@ -535,7 +536,7 @@ end)
 ---------- GESTION APPEL ---------
 ----------------------------------
 RegisterNUICallback('appelsDeleteHistorique', function (data, cb)
-    appelsDeleteHistorique(data.numero)
+    appelsDeleteHistorique(data.number) --numero)  <-- i think that was wrong.  changed it to number instead of numero.
     cb()
 end)
 RegisterNUICallback('appelsDeleteAllHistorique', function (data, cb)
