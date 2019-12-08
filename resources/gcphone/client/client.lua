@@ -11,7 +11,7 @@ local KeyToucheCloseEvent = {
     { code = 176, event = 'Enter' },
     { code = 177, event = 'Backspace' },
 }
-local KeyOpenClose = 288 -- DPAD UP (you have to hold it a bit-- love jay)  // OLD: --288 -- F2
+local KeyOpenClose = 172 -- DPAD UP (you have to hold it a bit-- love jay)  // OLD: --288 -- F2
 local KeyTakeCall = 38 -- E
 local menuIsOpen = false
 local contacts = {}
@@ -135,7 +135,6 @@ local keypressThreshold = 200 -- each 100 is about 1 second ... 200 = ~2 Seconds
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(1)
-        print("tick.")
         --This bit was added by Jay (hold UP on gamepad DPAD for 2ish seconds to open the menu)
         if IsControlJustPressed(0, KeyOpenClose) and not isDead then
             keypressTimer = 0
