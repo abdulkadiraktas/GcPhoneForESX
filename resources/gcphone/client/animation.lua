@@ -20,7 +20,7 @@ local ANIMS = {
 		['out'] = {
 			['text'] = 'cellphone_text_in',
 			['call'] = 'cellphone_call_listen_base',
-			
+
 		},
 		['text'] = {
 			['out'] = 'cellphone_text_out',
@@ -121,7 +121,7 @@ function PhonePlayCall (freeze)
 	PhonePlayAnim('call', freeze)
 end
 
-function PhonePlayIn () 
+function PhonePlayIn ()
 	if currentStatus == 'out' then
 		PhonePlayText()
 	end
