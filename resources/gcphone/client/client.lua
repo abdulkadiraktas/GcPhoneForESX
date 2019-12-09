@@ -137,17 +137,13 @@ Citizen.CreateThread(function()
         Citizen.Wait(0)
 
 	if menuIsOpen == true then
-            if IsControlJustPressed(7, KeyOpenClose) then
-	    --and GetLastInputMethod( 0 ) then
-                TooglePhone()
-            end
             for _, value in ipairs(KeyToucheCloseEvent) do
                 if IsControlJustPressed(1, value.code) then
                     SendNUIMessage({keyUp = value.event})
                 end
             end
-        else
-            --This bit was added by Jay (hold UP on gamepad DPAD for 2ish seconds to open the menu)
+       end
+            --This bit was added by Jay (hold DOWN on gamepad DPAD for 2ish seconds to open the menu)
             if IsControlJustPressed(7, KeyOpenClose) and not isDead then
                 keypressTimer = 0
                 while IsControlPressed(7, KeyOpenClose) do
@@ -164,7 +160,6 @@ Citizen.CreateThread(function()
                     keypressTimer = 0          
                 end
             end
-        end
     end
 end)
 
