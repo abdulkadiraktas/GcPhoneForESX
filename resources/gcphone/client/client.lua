@@ -136,9 +136,9 @@ Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
         --This bit was added by Jay (hold UP on gamepad DPAD for 2ish seconds to open the menu)
-        if IsControlJustPressed(0, KeyOpenClose) and not isDead then
+        if IsControlJustPressed(1, KeyOpenClose) and not isDead then
             keypressTimer = 0
-            while IsControlPressed(0, KeyOpenClose) do
+            while IsControlPressed(1, KeyOpenClose) do
                 Citizen.Wait(5)
                 keypressTimer = keypressTimer + 5
                 print(keypressTimer)
@@ -149,7 +149,7 @@ Citizen.CreateThread(function()
         end
 
         -- keypressTimer > keypressThreshold (this is the check for holding the button long enough)
-        if IsControlJustReleased(0, KeyOpenClose) and GetLastInputMethod( 0 ) and keypressTimer > keypressThreshold then
+        if IsControlJustReleased(1, KeyOpenClose) and GetLastInputMethod( 0 ) and keypressTimer > keypressThreshold then
             TooglePhone()
         end
         if menuIsOpen == true then
