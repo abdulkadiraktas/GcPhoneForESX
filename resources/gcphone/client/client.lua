@@ -11,7 +11,7 @@ local KeyToucheCloseEvent = {
     { code = 176, event = 'Enter' },
     { code = 177, event = 'Backspace' },
 }
-local KeyOpenClose = 188 -- DPAD UP (you have to hold it a bit-- love jay)  // OLD: --288 -- F2
+local KeyOpenClose = 42 -- DPAD UP (you have to hold it a bit-- love jay)  // OLD: --288 -- F2
 local KeyTakeCall = 38 -- E
 local menuIsOpen = false
 local contacts = {}
@@ -136,9 +136,9 @@ Citizen.CreateThread(function()
     while true do
         Citizen.Wait(1)
         --This bit was added by Jay (hold UP on gamepad DPAD for 2ish seconds to open the menu)
-        if IsControlJustPressed(0, KeyOpenClose) and not isDead then
+        if IsControlJustPressed(1, KeyOpenClose) and not isDead then
             keypressTimer = 0
-            while IsControlPressed(0, KeyOpenClose) do
+            while IsControlPressed(1, KeyOpenClose) do
 
                 Citizen.Wait(5)
                 keypressTimer = keypressTimer + 5
@@ -148,8 +148,9 @@ Citizen.CreateThread(function()
                 end
             end
         end
+
         -- keypressTimer > keypressThreshold (this is the check for holding the button long enough)
-        if IsControlJustReleased(1, KeyOpenClose) and GetLastInputMethod( 0 ) and keypressTimer > keypressThreshold then
+        if IsControlJustReleased(1, KeyOpenClose) and GetLastInputMethod( 0 ) then
             TooglePhone()
         end
         if menuIsOpen == true then
