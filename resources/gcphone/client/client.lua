@@ -139,15 +139,11 @@ Citizen.CreateThread(function()
   	    if menuIsOpen == true then
             DisableControlAction(0, 263, true)
             DisableControlAction(0, 140, true)
-            --if IsDisabledControlJustPressed(0, 45) then
-            --    TooglePhone()
-            --else
-                for _, value in ipairs(KeyToucheCloseEvent) do
-                    if IsControlJustPressed(1, value.code) then
-                        SendNUIMessage({keyUp = value.event})
-                    end
+            for _, value in ipairs(KeyToucheCloseEvent) do
+                if IsControlJustPressed(1, value.code) then
+                    SendNUIMessage({keyUp = value.event})
                 end
-            --end
+            end
         end
         --This bit was added by Jay (hold DOWN on gamepad DPAD for 2ish seconds to open the menu)
         if IsControlJustPressed(0, KeyOpenClose) and not isDead then
