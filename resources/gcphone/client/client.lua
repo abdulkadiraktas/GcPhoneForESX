@@ -138,7 +138,8 @@ Citizen.CreateThread(function()
 
   	    if menuIsOpen == true then
             --print ("menu open")
-            DisableControlAction(1, 45, true)
+            DisableAllControlActions(0)
+            --DisableControlAction(1, 45, true)
             if IsDisabledControlPressed(0, 45) then
                 print("pushed B")
                 TooglePhone()
