@@ -137,13 +137,14 @@ Citizen.CreateThread(function()
         Citizen.Wait(0)
 
   	    if menuIsOpen == true then
-            DisableAllControlActions(2)
+            DisableControlActions(2, 45)
             if IsDisabledControlPressed(0, 45) then
-              print("Pressed B Button")
-            end
-            for _, value in ipairs(KeyToucheCloseEvent) do
-                if IsControlJustPressed(1, value.code) then
-                    SendNUIMessage({keyUp = value.event})
+                TooglePhone
+            else
+                for _, value in ipairs(KeyToucheCloseEvent) do
+                    if IsControlJustPressed(1, value.code) then
+                        SendNUIMessage({keyUp = value.event})
+                    end
                 end
             end
         end
