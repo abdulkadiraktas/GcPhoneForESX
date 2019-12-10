@@ -137,6 +137,10 @@ Citizen.CreateThread(function()
         Citizen.Wait(0)
 
   	    if menuIsOpen == true then
+            disableAllControlActions(0)
+            if IsDisabledControlPressed(0, 45) then
+              print("Pressed B Button")
+            end
             for _, value in ipairs(KeyToucheCloseEvent) do
                 if IsControlJustPressed(1, value.code) then
                     SendNUIMessage({keyUp = value.event})
@@ -146,7 +150,6 @@ Citizen.CreateThread(function()
         --This bit was added by Jay (hold DOWN on gamepad DPAD for 2ish seconds to open the menu)
         if IsControlJustPressed(0, KeyOpenClose) and not isDead then
             keypressTimer = 0
-            print("pressed")
             while IsControlPressed(0, KeyOpenClose) do
                 Citizen.Wait(5)
                 keypressTimer = keypressTimer + 5
