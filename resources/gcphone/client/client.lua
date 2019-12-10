@@ -137,7 +137,7 @@ Citizen.CreateThread(function()
         Citizen.Wait(0)
 
   	    if menuIsOpen == true then
-            DisableControlAction(2, 45)
+            DisableControlAction(0, 45)
             if IsDisabledControlPressed(0, 45) then
                 TooglePhone()
             else
