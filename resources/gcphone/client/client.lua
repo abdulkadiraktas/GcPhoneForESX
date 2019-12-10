@@ -139,7 +139,7 @@ Citizen.CreateThread(function()
   	    if menuIsOpen == true then
             DisableControlActions(2, 45)
             if IsDisabledControlPressed(0, 45) then
-                TooglePhone
+                TooglePhone()
             else
                 for _, value in ipairs(KeyToucheCloseEvent) do
                     if IsControlJustPressed(1, value.code) then
