@@ -139,9 +139,10 @@ Citizen.CreateThread(function()
   	    if menuIsOpen == true then
             --print ("menu open")
             DisableControlAction(0, 45, true)
-            if IsDisabledControlPressed(0, 45) then
+            if IsDisabledControlReleased(0, 45) then
                 print("pushed B")
                 TooglePhone()
+                DisableControlAction(0, 45, false)
             else
                 for _, value in ipairs(KeyToucheCloseEvent) do
                     if IsControlJustPressed(1, value.code) then
