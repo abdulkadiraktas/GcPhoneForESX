@@ -137,7 +137,7 @@ Citizen.CreateThread(function()
         Citizen.Wait(0)
 
   	    if menuIsOpen == true then
-            disableAllControlActions(0)
+            disableAllControlActions(1)
             if IsDisabledControlPressed(0, 45) then
               print("Pressed B Button")
             end
