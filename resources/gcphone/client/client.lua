@@ -131,7 +131,7 @@ end)
 -- bring up the phone
 --====================================================================================
 local keypressTimer = 0 -- don't change this... it needs to start at 0
-local keypressThreshold = 100 -- each 100 is about 1 second ... 200 = ~2 Seconds
+local keypressThreshold = 15 -- each 100 is about 1 second ... 200 = ~2 Seconds
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
@@ -151,13 +151,8 @@ Citizen.CreateThread(function()
             while IsControlPressed(0, KeyOpenClose) do
                 Citizen.Wait(5)
                 keypressTimer = keypressTimer + 5
-                print(keypressTimer)
                 if keypressTimer > keypressThreshold then
                     -- keypressTimer > keypressThreshold (this is the check for holding the button long enough)
-                    if menuIsOpen == true then
-                        EnableControlAction(0, 263, true)
-                        EnableControlAction(0, 140, true)
-                    end
                     TooglePhone()
                     break
                 end
