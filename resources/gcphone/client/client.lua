@@ -142,7 +142,11 @@ Citizen.CreateThread(function()
             DisableControlAction(0, 140, true) -- key:R	gamepad:B
             --disable doors locking/unlocking
             DisableControlAction(0, 27, true)  -- ARROW UP / SCROLLWHEEL BUTTON (PRESS)	DPAD UP
-            DisableControlAction(0, 42, true)  -- ]	DPAD UP
+            DisableControlAction(0, 42, true)  -- ]    	DPAD UP
+            --fixing DPAD left causing radio to change
+            DisableControlAction(0, 52, true)  -- 	Q	   DPAD LEFT
+            --fixing DPAD Right causing vehicle lights to toggle
+            DisableControlAction(0, 74, true)  -- H	   DPAD RIGHT
             for _, value in ipairs(KeyToucheCloseEvent) do
                 if IsControlJustPressed(1, value.code) then
                     SendNUIMessage({keyUp = value.event})
