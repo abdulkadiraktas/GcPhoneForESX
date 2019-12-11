@@ -137,8 +137,12 @@ Citizen.CreateThread(function()
         Citizen.Wait(0)
 
   	    if menuIsOpen == true then
-            DisableControlAction(0, 263, true)
-            DisableControlAction(0, 140, true)
+            --disable accidental melee
+            DisableControlAction(0, 263, true) -- key:R	gamepad:B
+            DisableControlAction(0, 140, true) -- key:R	gamepad:B
+            --disable doors locking/unlocking
+            DisableControlAction(0, 27, true)  -- ARROW UP / SCROLLWHEEL BUTTON (PRESS)	DPAD UP
+            DisableControlAction(0, 42, true)  -- ]	DPAD UP
             for _, value in ipairs(KeyToucheCloseEvent) do
                 if IsControlJustPressed(1, value.code) then
                     SendNUIMessage({keyUp = value.event})
