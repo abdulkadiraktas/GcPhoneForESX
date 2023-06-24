@@ -1,11 +1,9 @@
 <template>
   <div class='phone_infoBare barre-header'>
-    <span class='reseau'>{{config.reseau}}</span>
+    <span class='reseau' style="font-size: x-small;">{{config.reseau}}</span>
     <span class="time">
-      <current-time></current-time>
+      <current-time style="font-size: x-small;"></current-time>
     </span>
-    <hr class = "batterie1">
-    <hr class = "batterie2">
     <hr class = "barre1">
     <hr class = "barre2">
     <hr class = "barre3">

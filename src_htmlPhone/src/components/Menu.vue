@@ -7,7 +7,7 @@
       <div class="menu_content">
       
           <div class='menu_buttons'>
-            <button 
+            <button style="margin:4px"
                 v-for="(but, key) of Apps" 
                 v-bind:key="but.name" 
                 v-bind:class="{ select: key === currentSelect}"

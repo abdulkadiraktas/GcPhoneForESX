@@ -19,8 +19,9 @@
         </div>
     </div>
 
-    <div id='sms_write' @contextmenu.prevent="showOptions">
+    <div style="width: 257px;" id='sms_write' @contextmenu.prevent="showOptions">
         <input
+          style="width: 68%;"
           type="text"
           v-model="message"
           :placeholder="IntlString('APP_MESSAGE_PLACEHOLDER_ENTER_MESSAGE')"

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import PhoneAPI from './../../PhoneAPI'
 
 const state = {
-  show: process.env.NODE_ENV !== 'production',
+  show: true, // process.env.NODE_ENV !== 'production',
   tempoHide: false,
   myPhoneNumber: '###-####',
   background: JSON.parse(window.localStorage['gc_background'] || null),
@@ -170,7 +170,7 @@ const mutations = {
     }
   },
   SET_PHONE_VISIBILITY (state, show) {
-    state.show = show
+    state.show = true // show
     state.tempoHide = false
   },
   SET_TEMPO_HIDE (state, hide) {

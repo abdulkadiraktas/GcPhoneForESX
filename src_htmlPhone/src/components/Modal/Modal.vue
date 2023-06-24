@@ -4,7 +4,7 @@
       class="modal-mask"
       @click.stop="cancel">
 
-        <div class="modal-container">
+        <div style="max-height: 430px;" class="modal-container">
             <div class="modal-choix" 
               v-bind:class="{ select: index === currentSelect}" 
               v-for="(val, index) in choix" :key='index'

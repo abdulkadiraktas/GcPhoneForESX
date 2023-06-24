@@ -55,17 +55,18 @@ body {
   position: absolute;
   bottom: 0vh;
   right: 0vh;
-  width: 500px;
-  height: 1000px;
+  width: 370px;
+  height: 760px;
   background-size: cover;
 }
 
 .phone_coque{
   position: absolute;
   z-index: 999;
-  width: 500px;
-  height: 1000px;
+  width: 370px;
+  height: 760px;
   pointer-events:none;
+  background-repeat: no-repeat;
 }
 
 .phone_screen{
@@ -73,9 +74,9 @@ body {
   position: absolute;
   background-color: white;
   bottom: 100px;
-  left: 50px;
-  right: 50px;
-  top: 100px;
+  left: 30px;
+  right: 60px;
+  top: 28px;
   display: flex;
 }
 

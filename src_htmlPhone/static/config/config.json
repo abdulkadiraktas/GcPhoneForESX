@@ -39,25 +39,37 @@
   "fileUploadService_Field": "files[]",
 
   "background": {
-    "Calvin & Hobbes": "back001.jpg",
-    "Destiny": "back002.jpg",
-    "Stormtrooper": "back003.jpg",
-    "Custom URL": "URL"
+    "Beyaz Çöl": "back001.jpg",
+    "Palmiyeler": "back002.jpg",
+    "Santa Monica Sahili": "back003.jpg",
+
+    "66. Karayolu": "color.jpg",
+    "Klasik tokyo": "humo.jpg",
+    "Karanlık Gezegen": "iluminacion.jpg",
+
+    "AstroNeon": "neon.jpg",
+    "Işıklı gezegen": "oscuridad.jpg",
+    "Vahşi plaj": "playa.jpg",
+    "Kış manzarası": "paisajes.jpg",
+    "Tokio neon": "tokio.jpg",
+    "Özel bağlantı": "URL"
   },
   "background_default": {
-    "label": "Calvin & Hobbes",
-    "value": "back001.jpg"
+    "label": "AstroNeon",
+    "value": "neon.jpg"
   },
 
 
   "coque": {
-    "Sansumg S8": "s8.png",
-    "Iphone X": "iphonex.png",
-    "Brick Base": "base.png",
-    "Transparent": "transparent.png"
+    "Gri": "grey.png",
+    "Somon": "pink.png",
+    "Kırmızı": "red.png",
+    "Nane": "s8.png",
+    "Mavi": "blue.png",
+    "Iphone 11": "no_cover.png"
   },
   "coque_default": {
-    "label": "Sansumg S8",
+    "label": "Nane",
     "value": "s8.png"
   },
 
